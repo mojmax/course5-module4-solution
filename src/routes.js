@@ -33,6 +33,21 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
 
       }]
     }
+  })
+  .state('items',  {
+    url:'/items/{shortname}',
+    templateUrl: 'src/restaurant/templates/main-items.template.html',
+    controller: 'ItemsController as itemsCtrl',
+    resolve: {
+      items: ['$stateParams','MenuDataService',
+      function ($stateParams,MenuDataService) {
+        return MenuDataService.getItemsForCategory($stateParams.shortname)
+         .then(function (response) {
+              return response.data.menu_items;
+           });
+
+      }]
+    }
   });
   //
   // .state('categories.items', {
