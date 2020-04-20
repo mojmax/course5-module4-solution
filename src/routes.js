@@ -26,11 +26,14 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
     controller: 'CategoriesController as categoriesCtrl',
     resolve: {
       categories: ['MenuDataService', function (MenuDataService) {
-        var ret = MenuDataService.getAllCategories();
-        return ret;
+        return MenuDataService.getAllCategories()
+         .then(function (response) {
+              return response.data;
+           });
+
       }]
     }
-  })
+  });
   //
   // .state('categories.items', {
   //  url: '/items/{shortname}',
