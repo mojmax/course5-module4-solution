@@ -1,8 +1,9 @@
 
 <ul ng-repeat="element in $ctrl.elements">
   <li >
-
-      <a >{{ element.name }}</a>
-
+      <b >{{ element.name }}</b>
+      <p>{{ element.description}}</p>
+      <span ng-if="element.price_small"> ${{ element.price_small}} </span><span ng-if="element.small_portion_name">for {{element.small_portion_name}}  </span>
+      <div><span ng-if="element.price_large"> ${{ element.price_large}} </span><span ng-if="element.large_portion_name">for {{element.large_portion_name}}  </span></div>
   </li>
 </ul>
