@@ -5,28 +5,32 @@
   .service('MenuDataService', MenuDataService);
 
 
-  MenuDataService.$inject = ['$http','RestaurantBasePath']
-  function MenuDataService($http,restaurantBasePath) {
+  MenuDataService.$inject = ['$http','ApiBasePath']
+  function MenuDataService($http,apiBasePath) {
     var service = this;
 
     service.getAllCategories = function () {
 
-      var response = $http({
+      return $http({
         method: "GET",
-        url: (restaurantBasePath + "/categories.json")
+        url: (apiBasePath + "/categories.json")
+      })
+      .then(function (response) {
+         return response.data;
       });
-      return response;
+
     };
 
     service.getItemsForCategory = function (categoryShortName) {
-      var response = $http({
+      return $http({
         method: "GET",
-        url: (restaurantBasePath + "/menu_items.json"),
+        url: (apiBasePath + "/menu_items.json"),
         params: {
           category: categoryShortName
         }
+      }).then( function (response) {
+        return response.data;
       });
-      return response;
     };
   };
 })();

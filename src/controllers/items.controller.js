@@ -5,11 +5,10 @@ angular.module('MenuApp')
 .controller('ItemsController', ItemsController);
 
 
-ItemsController.$inject = [ 'items'];
-function ItemsController( items) {
+ItemsController.$inject = [ 'data'];
+function ItemsController( data) {
   var ctrl = this;
-  ctrl.items = items;
-
+  ctrl.data = data;
 }
 
 })();
